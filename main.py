@@ -1,11 +1,9 @@
 import tkinter as tk
-from tkcalendar import DateEntry
 from tkinter import ttk
 
 from view import *
 from tkinter import messagebox
 
-################# cores ###############
 co0 = "#f0f3f5"  # Preta
 co1 = "#feffff"  # branca
 co2 = "#4fa882"  # verde
@@ -18,56 +16,56 @@ co8 = "#263238"   # + verde
 co9 = "#e9edf5"   # sky blue
 
 
-################# criando janela ###############
 
 janela = tk.Tk()
 janela.title("")
-janela.geometry('1043x453')
+janela.geometry('1483x653')
 janela.configure(background=co9)
 janela.resizable(width=False, height=False)
 
 
-################# dividindo janela ###############
 
 frame_cima = tk.Frame(janela, width=310, height=50, bg=co2, relief='flat')
 frame_cima.grid(row=0, column=0)
 
-frame_baixo = tk.Frame(janela, width=310, height=403, bg=co1, relief='flat')
+frame_baixo = tk.Frame(janela, width=310, height=603, bg=co1, relief='flat')
 frame_baixo.grid(row=1, column=0, padx=0, pady=0, sticky=tk.NSEW)
 
 frame_direita = tk.Frame(janela, width=588, height=403, bg=co1, relief='flat')
 frame_direita.grid(row=0, column=1, rowspan=2, padx=1, sticky=tk.NSEW)
 
 
-################# label cima ###############
-
-app_nome = tk.Label(frame_cima, text='Formulário de consultoria', anchor=tk.NW, font=('Ivy 13 bold'), bg=co2, fg=co1, relief='flat')
+app_nome = tk.Label(frame_cima, text='Dados Empresas', anchor=tk.NW, font=('Ivy 13 bold'), bg=co2, fg=co1, relief='flat')
 app_nome.place(x=10, y=20)
 
 global tree
 
 def inserir():
-    nome = entry_nome.get()
-    email = entry_email.get()
-    telefone = entry_telefone.get()
-    calendario = entry_calendario.get()
-    estado = entry_estado.get()
-    assunto = entry_assunto.get()
+    cnpj = entry_cnpj.get()
+    razao_social = entry_razao_social.get()
+    qualificacao_responsavel = entry_qualificacao_responsavel.get()
+    capital_social = entry_capital_social.get()
+    porte_empresa = entry_porte_empresa.get()
+    ente_federativo = entry_ente_federativo.get()
+    descricao_natureza_juridica = entry_descricao_natureza_juridica.get()
+    descricao_porte_empresa = entry_descricao_porte_empresa.get()
 
-    lista = [nome, email, telefone, calendario, estado, assunto]
+    lista = [cnpj, razao_social, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo, descricao_natureza_juridica, descricao_porte_empresa]
 
-    if nome == '':
+    if cnpj == '':
         messagebox.showerror('Erro', 'nome não pode ser vazio')
     else:
         inserir_info(lista)
         messagebox.showinfo('Sucesso', 'Os dados foram inseridos com sucesso')
 
-        entry_nome.delete(0, 'end')
-        entry_email.delete(0, 'end')
-        entry_telefone.delete(0, 'end')
-        entry_calendario.delete(0, 'end')
-        entry_estado.delete(0, 'end')
-        entry_assunto.delete(0, 'end')
+        entry_cnpj.delete(0, 'end')
+        entry_razao_social.delete(0, 'end')
+        entry_qualificacao_responsavel.delete(0, 'end')
+        entry_capital_social.delete(0, 'end')
+        entry_porte_empresa.delete(0, 'end')
+        entry_ente_federativo.delete(0, 'end')
+        entry_descricao_natureza_juridica.delete(0, 'end')
+        entry_descricao_porte_empresa.delete(0, 'end')
 
     for widget in frame_direita.winfo_children():
         widget.destroy()
@@ -82,49 +80,62 @@ def atualizar():
 
         valor_id = tree_lista[0]
 
-        entry_nome.delete(0, 'end')
-        entry_email.delete(0, 'end')
-        entry_telefone.delete(0, 'end')
-        entry_calendario.delete(0, 'end')
-        entry_estado.delete(0, 'end')
-        entry_assunto.delete(0, 'end')
+        entry_cnpj.delete(0, 'end')
+        entry_razao_social.delete(0, 'end')
+        entry_qualificacao_responsavel.delete(0, 'end')
+        entry_capital_social.delete(0, 'end')
+        entry_porte_empresa.delete(0, 'end')
+        entry_ente_federativo.delete(0, 'end')
+        entry_descricao_natureza_juridica.delete(0, 'end')
+        entry_descricao_porte_empresa.delete(0, 'end')
 
-        entry_nome.insert(0, tree_lista[1])
-        entry_email.insert(0, tree_lista[2])
-        entry_telefone.insert(0, tree_lista[3])
-        entry_calendario.insert(0, tree_lista[4])
-        entry_estado.insert(0, tree_lista[5])
-        entry_assunto.insert(0, tree_lista[6])
+        entry_cnpj.insert(0, tree_lista[1])
+        entry_razao_social.insert(0, tree_lista[2])
+        entry_qualificacao_responsavel.insert(0, tree_lista[3])
+
+        entry_capital_social.insert(0, tree_lista[4])
+        entry_porte_empresa.insert(0, tree_lista[5])
+        entry_ente_federativo.insert(0, tree_lista[6])
+        entry_descricao_natureza_juridica.insert(0, tree_lista[7])
+        entry_descricao_porte_empresa.insert(0, tree_lista[8])
 
         def update():
-            nome = entry_nome.get()
-            email = entry_email.get()
-            telefone = entry_telefone.get()
-            calendario = entry_calendario.get()
-            estado = entry_estado.get()
-            assunto = entry_assunto.get()
+            cnpj = entry_cnpj.get()
+            razao_social = entry_razao_social.get()
+            qualificacao_responsavel = entry_qualificacao_responsavel.get()
+            print(f"CNPJ: {cnpj}")
+            print(f"Razão Social: {razao_social}")
+            print(f"Qualificação Responsável: {qualificacao_responsavel}")
+            capital_social = entry_capital_social.get()
+            print(f"capital: {capital_social}")
+            porte_empresa = entry_porte_empresa.get()
+            ente_federativo = entry_ente_federativo.get()
+            descricao_natureza_juridica = entry_descricao_natureza_juridica.get()
+            descricao_porte_empresa = entry_descricao_porte_empresa.get()
 
-            lista = [nome, email, telefone, calendario, estado, assunto, valor_id]
+            lista = [cnpj, razao_social, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo, descricao_natureza_juridica, descricao_porte_empresa, valor_id]
 
-            if nome == '':
-                messagebox.showerror('Erro', 'nome não pode ser vazio')
+            if cnpj == '':
+                messagebox.showerror('Erro', 'Os campos não podem estar vazios')
             else:
                 atualizar_info(lista)
                 messagebox.showinfo('Sucesso', 'Os dados foram atualizados com sucesso')
 
-                entry_nome.delete(0, 'end')
-                entry_email.delete(0, 'end')
-                entry_telefone.delete(0, 'end')
-                entry_calendario.delete(0, 'end')
-                entry_estado.delete(0, 'end')
-                entry_assunto.delete(0, 'end')
+                entry_cnpj.delete(0, 'end')
+                entry_razao_social.delete(0, 'end')
+                entry_qualificacao_responsavel.delete(0, 'end')
+                entry_capital_social.delete(0, 'end')
+                entry_porte_empresa.delete(0, 'end')
+                entry_ente_federativo.delete(0, 'end')
+                entry_descricao_natureza_juridica.delete(0, 'end')
+                entry_descricao_porte_empresa.delete(0, 'end')
 
             for widget in frame_direita.winfo_children():
                 widget.destroy()
 
             mostrar()
         botao_Confirmar = tk.Button(frame_baixo,command=update, text='Confirmar', width=10, font=("ivi 9 bold"), bg=co2, fg=co1, relief='raised', overrelief='ridge')
-        botao_Confirmar.place(x=110, y=370)
+        botao_Confirmar.place(x=110, y=570)
 
     except IndexError:
         messagebox.showerror('Error', 'seleciona um dos dados na tabela')
@@ -148,69 +159,73 @@ def deletar():
     except IndexError:
         messagebox.showerror('Error', 'seleciona um dos dados na tabela')
 
-################# configurando frame baixo ###############
-################# NOME ###############
-label_nome = tk.Label(frame_baixo, text='Nome:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
-label_nome.place(x=10, y=10)
 
-entry_nome = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
-entry_nome.place(x=15, y=40)
+label_cnpj = tk.Label(frame_baixo, text='CNPJ:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_cnpj.place(x=10, y=10)
 
-
-################# EMAIL ###############
-label_email = tk.Label(frame_baixo, text='Email:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
-label_email.place(x=10, y=70)
-
-entry_email = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
-entry_email.place(x=15, y=100)
+entry_cnpj = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_cnpj.place(x=15, y=40)
 
 
-################# TELEFONE ###############
-label_telefone = tk.Label(frame_baixo, text='Telefone:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
-label_telefone.place(x=10, y=130)
+label_razao_social = tk.Label(frame_baixo, text='Razão Social:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_razao_social.place(x=10, y=70)
 
-entry_telefone = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
-entry_telefone.place(x=15, y=160)
-
-
-################# DATA CONSULTA ###############
-label_calendario = tk.Label(frame_baixo, text='Data da consulta:', anchor=tk.NW, font=('Ivy 10 bold'), bg=co1, fg=co4, relief='flat')
-label_calendario.place(x=10, y=190)
-
-entry_calendario = DateEntry(frame_baixo, selectmode='day', date_pattern='dd/mm/yyyy')
-entry_calendario.place(x=15, y=220)
+entry_razao_social = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_razao_social.place(x=15, y=100)
 
 
+label_qualificacao_responsavel = tk.Label(frame_baixo, text='Qualificação Responsável:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_qualificacao_responsavel.place(x=10, y=130)
 
-################# ESTADO DA CONSULTA ###############
-label_estado = tk.Label(frame_baixo, text='Estado da consulta:', anchor=tk.NW, font=('Ivy 10 bold'), bg=co1, fg=co4, relief='flat')
-label_estado.place(x=160, y=190)
-
-entry_estado = tk.Entry(frame_baixo, width=20, justify='left',  relief='solid')
-entry_estado.place(x=160, y=220)
+entry_qualificacao_responsavel = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_qualificacao_responsavel.place(x=15, y=160)
 
 
-################# CONSULTA SOBRE ###############
-label_assunto = tk.Label(frame_baixo, text='Informação extra:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
-label_assunto.place(x=10, y=250)
+label_capital_social = tk.Label(frame_baixo, text='Capital Social:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_capital_social.place(x=10, y=190)
 
-entry_assunto = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
-entry_assunto.place(x=15, y=280)
+entry_capital_social = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_capital_social.place(x=15, y=220)
+
+label_porte_empresa = tk.Label(frame_baixo, text='Porte da Empresa:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_porte_empresa.place(x=10, y=250)
+
+entry_porte_empresa = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_porte_empresa.place(x=15, y=280)
 
 
-################# BOTÃO INSERIR ###############
+label_ente_federativo = tk.Label(frame_baixo, text='Ente Federativo:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_ente_federativo.place(x=10, y=310)
+
+entry_ente_federativo = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_ente_federativo.place(x=15, y=340)
+
+
+label_descricao_natureza_juridica = tk.Label(frame_baixo, text='Descrição da Naturaza Juridica:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_descricao_natureza_juridica.place(x=10, y=370)
+
+entry_descricao_natureza_juridica = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_descricao_natureza_juridica.place(x=15, y=400)
+
+
+label_descricao_porte_empresa = tk.Label(frame_baixo, text='Descrição do Porte da Empresa:', anchor=tk.NW, font=('Ivy 13 bold'), bg=co1, fg=co4, relief='flat')
+label_descricao_porte_empresa.place(x=10, y=430)
+
+entry_descricao_porte_empresa = tk.Entry(frame_baixo, width=45, justify='left',  relief='solid')
+entry_descricao_porte_empresa.place(x=15, y=460)
+
+
+
 botao_inserir = tk.Button(frame_baixo, command=inserir, text='Inserir', width=10, font=("ivi 9 bold"), bg=co6, fg=co1, relief='raised', overrelief='ridge')
-botao_inserir.place(x=15, y=330)
+botao_inserir.place(x=15, y=510)
 
 
-################# BOTÃO ATUALIZAR ###############
 botao_atualizar = tk.Button(frame_baixo, command=atualizar, text='Atualizar', width=10, font=("ivi 9 bold"), bg=co2, fg=co1, relief='raised', overrelief='ridge')
-botao_atualizar.place(x=110, y=330)
+botao_atualizar.place(x=110, y=510)
 
 
-################# BOTÃO DELETAR ###############
 botao_deletar = tk.Button(frame_baixo, command=deletar, text='Deletar', width=10, font=("ivi 9 bold"), bg=co7, fg=co1, relief='raised', overrelief='ridge')
-botao_deletar.place(x=205, y=330)
+botao_deletar.place(x=205, y=510)
 
 
 def mostrar():
@@ -218,17 +233,13 @@ def mostrar():
 
     lista = mostar_info()
 
-    # lista para cabecario
-    tabela_head = ['ID','Nome',  'email','telefone', 'Data', 'Estado','Sobre']
+    tabela_head = ['ID','CNPJ', 'RAZÃO SOCIAL','QUALIFICAÇÃO RESPONSÁVEL', 'CAPITAL SOCIAL', 'PORTE DA EMPRESA', 'ENTE FEDERATIVO', 'DESCRIÇÃO NATUREZA JURÍDICA','DESCRIÇÃO PORTE DA EMPRESA']
 
 
-    # criando a tabela
     tree = ttk.Treeview(frame_direita, selectmode="extended", columns=tabela_head, show="headings")
 
-    # vertical scrollbar
     vsb = ttk.Scrollbar(frame_direita, orient="vertical", command=tree.yview)
 
-    # horizontal scrollbar
     hsb = ttk.Scrollbar( frame_direita, orient="horizontal", command=tree.xview)
 
     tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
@@ -239,13 +250,12 @@ def mostrar():
     frame_direita.grid_rowconfigure(0, weight=12)
 
 
-    hd=["nw","nw","nw","nw","nw","center","center"]
-    h=[30,170,140,100,120,50,100]
+    hd=["center","center","center","center","center","center","center","center","center"]
+    h=[40,130,130,130,130,130,130, 180, 180]
     n=0
 
     for col in tabela_head:
         tree.heading(col, text=col.title(), anchor=tk.CENTER)
-        # adjust the column's width to the header string
         tree.column(col, width=h[n],anchor=hd[n])
 
         n+=1

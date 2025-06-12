@@ -1,11 +1,12 @@
 import sqlite3 as lite
 
-conn = lite.connect("dados.db")
+conn = lite.connect("empresas.db")
 
 def inserir_info(i):
     with conn:
         cursor = conn.cursor()
-        query= "INSERT INTO formulario (nome, email, telefone, dia_em, estado, assunto) VALUES (?, ?, ?, ?, ?, ?)"
+        query= "INSERT INTO dados_empresa (cnpj, razao_social, qualificacao_responsavel, capital_social, porte_empresa, ente_federativo, descricao_natureza_juridica, descricao_porte_empresa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+
         cursor.execute(query,i)
 
 
@@ -13,7 +14,7 @@ def mostar_info():
     lista = []
     with conn:
         cursor = conn.cursor()
-        query = "SELECT * FROM formulario"
+        query = "SELECT * FROM dados_empresa"
         cursor.execute(query)
 
         info = cursor.fetchall()
@@ -25,12 +26,12 @@ def mostar_info():
 def atualizar_info(i):
     with conn:
         cursor = conn.cursor()
-        query = "UPDATE formulario SET nome=?, email=?, telefone=?, dia_em=?, estado=?, assunto=? WHERE id=?"
+        query = "UPDATE dados_empresa SET cnpj=?, razao_social=?, qualificacao_responsavel=?, capital_social=?, porte_empresa=?, ente_federativo=?, descricao_natureza_juridica=?, descricao_porte_empresa=? WHERE id=?"
         cursor.execute(query, i)
 
 
 def deletar_info(i):
     with conn:
         cursor = conn.cursor()
-        query = "DELETE FROM formulario WHERE id=?"
+        query = "DELETE FROM dados_empresa WHERE id=?"
         cursor.execute(query, i)

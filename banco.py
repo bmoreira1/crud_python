@@ -1,8 +1,7 @@
 import sqlite3 as lite
 
-conn = lite.connect('CRUD/dados.db')
+conn = lite.connect('empresas.db')
 
 with conn:
     cursor = conn.cursor()
-    cursor.execute('CREATE TABLE formulario(id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, email TEXT, telefone TEXT, dia_em DATE, estado TEXT, assunto TEXT)')
-
+    cursor.execute('CREATE TABLE dados_empresa(id INTEGER PRIMARY KEY AUTOINCREMENT, cnpj int, razao_social text, qualificacao_responsavel text, capital_social text, porte_empresa text, ente_federativo text, descricao_natureza_juridica text, descricao_porte_empresa text)')
